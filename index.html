@@ -1,0 +1,33 @@
+<div id="app"></div>
+<script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+<script>
+
+var imgPath = 'https://yadi.sk/d/_10r_VtRlX6A8A/';
+var favicon_images = [];
+function getImagesPath() {
+  for(i = 0; i <= 53; i++) {
+    favicon_images.push(imgPath + 'tmp-' + i +'.gif');
+  }
+}
+
+image_counter = 0; // To keep track of the current image
+getImagesPath();
+console.log(favicon_images);
+
+setInterval(function() {
+    $("link[rel='icon']").remove();
+    $("link[rel='shortcut icon']").remove();
+    $("head").append('<link rel="icon" href="' + favicon_images[image_counter] + '" type="image/gif">');
+  
+	// If last image then goto first image
+	// Else go to next image    
+	if(image_counter == favicon_images.length -1) {
+        image_counter = 0;
+  } else {
+        image_counter++;
+  }      
+}, 200);
+</script>
